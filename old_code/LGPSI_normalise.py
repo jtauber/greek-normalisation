@@ -3,49 +3,8 @@
 import glob
 import re
 import sys
-import unicodedata
 
 from norm_data import PROCLITICS, ENCLITICS, ELISION, MOVABLE, PROPER_NOUNS, SPECIAL_CASES
-
-VARIA = "\u0300"
-OXIA = "\u0301"
-PSILI = "\u0313"
-DASIA = "\u0314"
-PERISPOMENI = "\u0342"
-
-ACCENTS = [VARIA, OXIA, PERISPOMENI]
-
-
-def d(s):
-    return unicodedata.normalize("NFD", s)
-
-
-def n(x):
-    return unicodedata.normalize("NFKC", x)
-
-
-def strip_accents(s):
-    return n("".join(
-        c for c in d(s) if c not in ACCENTS
-    ))
-
-
-def count_accents(s):
-    count = 0
-    for c in d(s):
-        if c in ACCENTS:
-            count += 1
-    return count
-
-
-def strip_last_accent(word):
-    x = list(word)
-    for i, ch in enumerate(x[::-1]):
-        s = strip_accents(ch)
-        if s != ch:
-            x[-i - 1] = s
-            break
-    return "".join(x)
 
 
 ENCLITICS_NORM = {
@@ -73,14 +32,10 @@ def convert(token):
     norm_code = []
 
     # change graves to acutes
-    temp = ""
-    for ch in d(norm):
-        if ch == VARIA:
-            ch = OXIA  # OXIA will be normalized to TONOS below if needed
-        temp += ch
-    if norm != n(temp):
+    temp = grave_to_acute(norm)
+    if norm != temp:
         norm_code.append("grave")
-    norm = n(temp)
+    norm = temp
 
     if norm in ELISION:
         norm = ELISION[norm]
@@ -90,11 +45,11 @@ def convert(token):
         norm = MOVABLE[norm]
         norm_code.append("movable")
 
-    if count_accents(norm) == 2:
-        pre_norm = norm
-        norm = strip_last_accent(norm)
-        assert count_accents(norm) == 1, (pre_norm, norm)
+    # strip last accent if two
+    temp = strip_last_accent_if_two(norm)
+    if norm != temp:
         norm_code.append("extra")
+    norm = temp
 
     if norm not in PROPER_NOUNS:
         if norm != norm.lower():
