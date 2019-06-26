@@ -8,6 +8,7 @@ PERISPOMENI = "\u0342"
 PSILI = "\u0313"
 DASIA = "\u0314"
 
+BREATHING = [PSILI, DASIA]
 ACCENTS = [VARIA, OXIA, PERISPOMENI]
 
 
@@ -58,4 +59,26 @@ def strip_last_accent_if_two(word):
         norm = strip_last_accent(word)
     else:
         norm = word
-    return word
+    return norm
+
+
+def breathing_check(word):
+    # note: doesn't check for mid-word breathing marks
+    d = [ch for ch in nfd(word.lower()) if ch not in ACCENTS]
+    if d[0] in "αεηιοω":
+        if len(d) > 1:
+            if d[1] in BREATHING:
+                if len(d) > 2 and d[2] in "ιυ":
+                    return False
+                else:
+                    return True
+            elif d[1] in "ιυ":
+                if len(d) > 2 and d[2] in BREATHING:
+                    pass
+                else:
+                    return False
+            else:
+                return False
+        else:
+            return False
+    return True
