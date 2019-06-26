@@ -12,12 +12,12 @@ def convert(token):
     if not norm:
         return token, ["nonword"]
 
-    if re.match("^[α-ω]+ʹ$", norm):
-        return norm, ["number"]
-
-
-    if re.match("^[A-Za-zë]+[?:]?$", norm):
-        return norm, ["latin"]
+    # if re.match("^[α-ω]+ʹ$", norm):
+    #     return norm, ["number"]
+    #
+    #
+    # if re.match("^[A-Za-zë]+[?:]?$", norm):
+    #     return norm, ["latin"]
 
 
 
