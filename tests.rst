@@ -63,3 +63,31 @@ False
 
 >>> breathing_check('ἀ')
 True
+
+
+## normalise
+
+>>> from greek_normalisation.normalise import Normaliser
+
+>>> normalise = Normaliser().normalise
+
+>>> normalise('τὴν')
+('τήν', ['grave'])
+
+>>> normalise('γυναῖκά')
+('γυναῖκα', ['extra'])
+
+>>> normalise('σου')
+('σου', ['enclitic'])
+
+>>> normalise('Τὴν')
+('τήν', ['grave', 'capitalisation'])
+
+>>> normalise('ὁ')
+('ὁ', ['proclitic'])
+
+>>> normalise('ὁς')
+('ὁς', ['ERROR'])
+
+>>> normalise('μετ’')
+('μετά', ['elision'])

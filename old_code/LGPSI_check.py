@@ -9,41 +9,6 @@ import unicodedata
 from normalise import convert
 
 
-TOKEN_REGEX = r"""
-[
-    \u0028              # (
-    \u00AB              # «
-]?
-(?P<word>
-    [
-        \u0300          # combining grave
-        \u0301          # combining acute
-        \u0304          # combining macron
-        \u0308          # combining diaeresis
-        \u0313          # combining smooth breathing
-        \u0314          # combining rough breathing
-        \u0342          # combining circumflex
-        \u0345          # combining iota subscript
-        \u0391-\u03A9   # uppercase
-        \u03B1-\u03C9   # lowercase
-        \u002D          # - (hyphen)
-    ]+
-[
-    \u2019              # ’ (apostrophe)
-]?
-)
-[
-    \u0021              # !
-    \u0029              # )
-    \u002C              # ,
-    \u002E              # .
-    \u003B              # ;
-    \u00B7              # · (middle dot)
-    \u00BB              # »
-]*
-$
-"""
-
 c = collections.Counter()
 
 for FILENAME in glob.glob("src/*.md"):
