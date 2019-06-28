@@ -91,3 +91,15 @@ True
 
 >>> normalise('μετ’')
 ('μετά', ['elision'])
+
+>>> normalise('οὐκ')
+('οὐ', ['movable', 'proclitic'])
+
+>>> normalise('Ἀχιλλεύς')
+('ἀχιλλεύς', ['capitalisation'])
+
+>>> PROPER_NOUNS = {'Ἀχιλλεύς'}
+>>> normalise = Normaliser(PROPER_NOUNS).normalise
+
+>>> normalise('Ἀχιλλεύς')
+('Ἀχιλλεύς', [])
