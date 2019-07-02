@@ -8,7 +8,7 @@ GRC_CHAR = r"[\u0374\u0390-\u03A1\u03A3-\u03C1\u03C3-\u03CE" \
          r"\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC" \
          r"\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC" \
          r"\u1FF2-\u1FF4\u1FF6-\u1FFC]"
-GRC_WORD = fr"{GRCHAR}+\u03C2?\u2019?"
+GRC_WORD = fr"{GRC_CHAR}+\u03C2?\u2019?"
 
 NFD_TOKEN = r"""
 [
