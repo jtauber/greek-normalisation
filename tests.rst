@@ -6,9 +6,19 @@
 ## greek_normalisation.utils
 
 >>> from greek_normalisation.utils import (
+...     nfd, nfc, nfkc,
 ...     strip_accents, count_accents, strip_last_accent, grave_to_acute,
 ...     strip_last_accent_if_two, breathing_check
 ... )
+
+>>> len(nfd('ἄ'))
+3
+
+>>> len(nfc('ἄ'))
+1
+
+>>> nfkc('\u03D5') == nfkc('\u03C6')
+True
 
 >>> strip_accents('μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος')
 'μηνιν ἀειδε θεα Πηληϊαδεω Ἀχιληος'
