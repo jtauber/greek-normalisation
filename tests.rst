@@ -1,9 +1,11 @@
-# Tests
+Tests
+=====
 
     This is a literate doctest.
     Run ``python3 -m doctest -v tests.rst`` to test.
 
-## greek_normalisation.utils
+greek_normalisation.utils
+-------------------------
 
 >>> from greek_normalisation.utils import (
 ...     nfd, nfc, nfkc,
@@ -75,7 +77,8 @@ False
 True
 
 
-## normalise
+normalise
+---------
 
 >>> from greek_normalisation.normalise import Normaliser
 
