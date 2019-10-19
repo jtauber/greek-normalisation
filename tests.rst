@@ -61,6 +61,9 @@ False
 >>> breathing_check('ἀι')
 False
 
+>>> breathing_check('ἀϊ')
+True
+
 >>> breathing_check('ἀε')
 True
 

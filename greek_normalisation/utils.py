@@ -8,6 +8,8 @@ PERISPOMENI = "\u0342"
 PSILI = "\u0313"
 DASIA = "\u0314"
 
+DIAERESIS = "\u0308"
+
 BREATHING = [PSILI, DASIA]
 ACCENTS = [VARIA, OXIA, PERISPOMENI]
 
@@ -69,7 +71,10 @@ def breathing_check(word):
         if len(d) > 1:
             if d[1] in BREATHING:
                 if len(d) > 2 and d[2] in "ιυ":
-                    return False
+                    if len(d) > 3 and d[3] == DIAERESIS:
+                        return True
+                    else:
+                        return False
                 else:
                     return True
             elif d[1] in "ιυ":
