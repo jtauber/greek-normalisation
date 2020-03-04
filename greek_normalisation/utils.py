@@ -26,6 +26,10 @@ def nfkc(s):
     return unicodedata.normalize("NFKC", s)
 
 
+def convert_to_2019(s):
+    return s.replace("\u02BC", "\u2019").replace("\u1FBF", "\u2019")
+
+
 def strip_accents(s):
     return nfc("".join(
         cp for cp in nfd(s) if cp not in ACCENTS

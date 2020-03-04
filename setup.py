@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="greek-normalisation",
-    version="0.3",
+    version="0.4",
     description="Python 3 utilities for validating and normalising Ancient Greek text",
     url="http://github.com/jtauber/greek-normalisation",
     author="James Tauber",
@@ -18,6 +18,7 @@ setup(
     packages=["greek_normalisation"],
     entry_points={
         "console_scripts": [
+            "to2019 = greek_normalisation.convert_files:to_2019",
             "toNFC = greek_normalisation.convert_files:to_nfc",
             "toNFD = greek_normalisation.convert_files:to_nfd",
         ],

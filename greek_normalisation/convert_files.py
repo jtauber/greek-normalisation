@@ -3,7 +3,7 @@
 import fileinput
 import sys
 
-from .utils import nfc, nfd
+from .utils import nfc, nfd, convert_to_2019
 
 
 def convert(func):
@@ -25,3 +25,7 @@ def to_nfc():
 
 def to_nfd():
     convert(nfd)
+
+
+def to_2019():
+    convert(convert_to_2019)

@@ -17,4 +17,4 @@ pip install greek-normalisation
 
 See `tests.rst` for usage examples.
 
-Also, two command-line utilities `toNFC` and `toNFD` are installed which can be used to do unicode normalisation on files (e.g. `toNFC source.txt > nfc_version.txt`).
+Also, three command-line utilities `to2019`, `toNFC` and `toNFD` are installed which can be used to convert U+02BC and U+1FBF to U+2019 and do unicode normalisation on files (e.g. `toNFC source.txt > nfc_version.txt`).
