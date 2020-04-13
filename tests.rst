@@ -83,39 +83,56 @@ True
 normalise
 ---------
 
->>> from greek_normalisation.normalise import Normaliser
+>>> from greek_normalisation.normalise import Normaliser, Norm
 
 >>> normalise = Normaliser().normalise
 
 >>> normalise('τὴν')
-('τήν', ['grave'])
+('τήν', <Norm.GRAVE: 1>)
 
 >>> normalise('γυναῖκά')
-('γυναῖκα', ['extra'])
+('γυναῖκα', <Norm.EXTRA: 8>)
 
 >>> normalise('σου')
-('σου', ['enclitic'])
+('σου', <Norm.ENCLITIC: 64>)
 
 >>> normalise('Τὴν')
-('τήν', ['grave', 'capitalisation'])
+('τήν', <Norm.CAPITALISED|GRAVE: 17>)
 
 >>> normalise('ὁ')
-('ὁ', ['proclitic'])
+('ὁ', <Norm.PROCLITIC: 32>)
 
 >>> normalise('ὁς')
-('ὁς', ['ERROR'])
+('ὁς', <Norm.NO_ACCENT: 128>)
 
 >>> normalise('μετ’')
-('μετά', ['elision'])
+('μετά', <Norm.ELISION: 2>)
 
 >>> normalise('οὐκ')
-('οὐ', ['movable', 'proclitic'])
+('οὐ', <Norm.PROCLITIC|MOVABLE: 36>)
 
 >>> normalise('Ἀχιλλεύς')
-('ἀχιλλεύς', ['capitalisation'])
+('ἀχιλλεύς', <Norm.CAPITALISED: 16>)
 
 >>> PROPER_NOUNS = {'Ἀχιλλεύς'}
->>> normalise = Normaliser(PROPER_NOUNS).normalise
+>>> normalise = Normaliser(proper_nouns=PROPER_NOUNS).normalise
 
 >>> normalise('Ἀχιλλεύς')
-('Ἀχιλλεύς', [])
+('Ἀχιλλεύς', <Norm.UNCHANGED: 0>)
+
+
+You can config which normalisations to do:
+
+>>> normalise = Normaliser(config=Norm.GRAVE|Norm.PROCLITIC).normalise
+
+>>> normalise('Τὴν')
+('Τήν', <Norm.GRAVE: 1>)
+
+>>> normalise('ὁς')
+('ὁς', <Norm.UNCHANGED: 0>)
+
+>>> normalise('μετ’')
+('μετ’', <Norm.UNCHANGED: 0>)
+
+>>> normalise('οὐκ')
+('οὐκ', <Norm.PROCLITIC: 32>)
