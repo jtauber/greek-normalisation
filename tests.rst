@@ -136,3 +136,12 @@ You can config which normalisations to do:
 
 >>> normalise('οὐκ')
 ('οὐκ', <Norm.PROCLITIC: 32>)
+
+>>> normalise = Normaliser(Norm.ENCLITIC).normalise
+
+>>> normalise('γυναῖκά')
+('γυναῖκά', <Norm.UNCHANGED: 0>)
+
+>>> normalise('σου')
+('σου', <Norm.ENCLITIC: 64>)
+
