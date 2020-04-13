@@ -10,7 +10,7 @@ greek_normalisation.utils
 >>> from greek_normalisation.utils import (
 ...     nfd, nfc, nfkc,
 ...     strip_accents, count_accents, strip_last_accent, grave_to_acute,
-...     strip_last_accent_if_two, breathing_check
+...     strip_last_accent_if_two, breathing_check, convert_to_2019
 ... )
 
 >>> len(nfd('ἄ'))
@@ -79,6 +79,9 @@ False
 >>> breathing_check('ἀ')
 True
 
+>>> convert_to_2019('μετʼ')
+'μετ’'
+
 
 normalise
 ---------
@@ -137,6 +140,10 @@ You can config which normalisations to do:
 >>> normalise('οὐκ')
 ('οὐκ', <Norm.PROCLITIC: 32>)
 
+>>> normalise('σου')
+('σου', <Norm.UNCHANGED: 0>)
+
+
 >>> normalise = Normaliser(Norm.ENCLITIC).normalise
 
 >>> normalise('γυναῖκά')
@@ -145,3 +152,5 @@ You can config which normalisations to do:
 >>> normalise('σου')
 ('σου', <Norm.ENCLITIC: 64>)
 
+>>> normalise('ὁ')
+('ὁ', <Norm.UNCHANGED: 0>)
