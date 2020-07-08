@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="greek-normalisation",
-    version="0.5",
+    version="0.5.1",
     description="Python 3 utilities for validating and normalising Ancient Greek text",
     url="http://github.com/jtauber/greek-normalisation",
     author="James Tauber",
